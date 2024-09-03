@@ -56,7 +56,7 @@ ROOT_URLCONF = 'userform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Add custom template directories here if necessary
+        'DIRS': ['templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,38 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1 class="my-4">Blog Posts</h1>
-        <div class="row">
-            {% for post in posts %}
-                <div class="col-md-6">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}blog{% endblock title %}
+{% block body %}
+<style>
+    .divider {
+        margin-left: 30%;
+        width: 40%;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .about{
+        height: 200px;
+        width: 700px;
+        padding-left: 40px;
+    }
+
+    .divider::before,
+    .divider::after {
+        flex: 1;
+        content: '';
+        padding: 2px;
+        background-color: #25826a;
+        margin: 5px;
+    }
+    .hero-section {
+            background: linear-gradient(to right, #004d40 35%, rgba(0, 0, 0, 0.3) 100%), url("{% static 'images/blog.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            height: 400px; /* Ensure there is enough height to display the image */
+        }
+        .blog-post-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+    
+            .blog-post-meta {
+                font-size: 0.9rem;
+                color: #6c757d;
+            }
+    
+            .recent-posts img {
+                width: 100%;
+                height: auto;
+            }
+    
+            .recent-post-title {
+                font-size: 0.9rem;
+                font-weight: bold;
+            }
+    
+            .category-list a {
+                text-decoration: none;
+                color: #000;
+            }
+    
+            .category-list a:hover {
+                color: #25826a;
+            }
+</style>
+<section class="hero-section">
+    <div class="about pt-5 pb-5"> 
+    <h1><b>Blog</b></h1>
+    <p style="font-size: 25px;">Need any type of insurance policies over the world you can contact us without any hesitation. Our expert support team with help you.</p>
+    <button class="btn btn-outline-success px-4 py-2 text-white" type="submit">View more</button>
+</div>
+</section>
+        <!-- Blog Content -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Main Blog Content -->
+                <div class="col-md-8">
+                    <!-- Featured Blog Post -->
                     <div class="card mb-4">
+                        <img src="{% static 'images/blog4.jpg' %}" class="card-img-top shadow-lg bg-white rounded" width="400" height="350">
                         <div class="card-body">
-                            <h2 class="card-title">{{ post.title }}</h2>
-                            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
-                            <p class="text-muted">By {{ post.author }} on {{ post.created_at|date:"F d, Y" }}</p>
-                            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                            <div class="blog-post-meta mb-2">
+                                <span>By Insurigo</span> / <span>October 10, 2023</span> / <span>Consulting</span>
+                            </div>
+                            <h5 class="blog-post-title">Earn good money and make you very successful creative working</h5>
+                            <p class="card-text">We denounce with righteous indignation and dislike men who are so beguiled and demo realized by the charms of pleasure of the moment, so blinded by desire...</p>
+                            <a href="#" class="btn btn-success">Continue Reading</a>
+                        </div>
+                    </div>
+    
+                    <!-- Additional Blog Posts -->
+                    <div class="card mb-4">
+                        <img src="{% static 'images/blog3.jpg' %}" class="card-img-top shadow-lg bg-white rounded" width="400" height="350">
+
+                        <div class="card-body">
+                            <div class="blog-post-meta mb-2">
+                                <span>By Insurigo</span> / <span>September 10, 2023</span> / <span>Business</span>
+                            </div>
+                            <h5 class="blog-post-title">Avenue money and make you very creative work</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu ex eget nisi...</p>
+                            <a href="#" class="btn btn-success">Continue Reading</a>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <!-- Search Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Searching...">
+                                <button class="btn btn-success" type="button">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent Posts Widget -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Recent Posts
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled recent-posts">
+                                <li class="mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'images/blog1.jpg' %}" class="card-img-top shadow-lg bg-white rounded" width="500">
+                                        <div class="ms-3">
+                                            <div class="recent-post-title">Earn good money and make you very successful</div>
+                                            <div class="text-muted">October 10, 2023</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'images/blog2.jpg' %}" class="card-img-top shadow-lg bg-white rounded" width="500">
+                                        <div class="ms-3">
+                                            <div class="recent-post-title">Avenue money and make you very creative work</div>
+                                            <div class="text-muted">September 10, 2023</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Add more recent posts as needed -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Categories Widget -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Categories
+                        </div>
+                        <div class="card-body category-list">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="#">Business</a></li>
+                                <li class="mb-2"><a href="#">Consulting</a></li>
+                                <li class="mb-2"><a href="#">Insurance</a></li>
+                                <li class="mb-2"><a href="#">Health</a></li>
+                                <!-- Add more categories as needed -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <a href="{% url 'logout' %}">Logout</a>
-
-
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
-
-
+        {% endblock body %}
